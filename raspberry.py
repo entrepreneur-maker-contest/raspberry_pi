@@ -6,23 +6,6 @@ from PyQt5.QtWidgets import *
 R=185
 G=57
 B=65
-class PaintWidget(QWidget):
-    def __init__(self,parent=None,r=0,g=0,b=255,width=0,height=0):
-        super().__init__(parent)
-        self.r = r
-        self.g = g
-        self.b = b
-        self.width = width
-        self.height = height
-
-    def paintEvent(self, event):
-        qp = QPainter(self)
-
-        qp.setPen(Qt.black)
-
-        # Colored rectangles
-        qp.setBrush(QColor(self.r, self.g, self.b))
-        qp.drawRect(0, 0,  self.width,self.height)
 
 class MyLabel(QLabel):
     def __init__(self, text=None,width=0,height=0):
@@ -34,7 +17,7 @@ class MyLabel(QLabel):
         painter = QPainter(self)
         painter.setPen(Qt.white)
         painter.translate( self.height,self.width)
-        painter.rotate(-90)
+        painter.rotate(90)
         if self.text:
             painter.drawText(0, 0, self.text)
         painter.end()
@@ -51,7 +34,7 @@ class Main(QWidget):
         self.label2.setStyleSheet("font-size: 40px;font-weight: 300;line-height: 0.62;text-align: center;color: rgb(255, 255, 255);")
 
         pixmap = QPixmap('raspberry-icon.png')
-        transform = QTransform().rotate(-90)
+        transform = QTransform().rotate(90)
         pixmap = pixmap.transformed(transform)
         self.icon = QLabel()
 
@@ -59,9 +42,14 @@ class Main(QWidget):
 
         hBoxLayout = QHBoxLayout()
 
-        hBoxLayout.addWidget(self.icon)
-        hBoxLayout.addWidget(self.label1)
+
         hBoxLayout.addWidget(self.label2)
+
+        hBoxLayout.addWidget(self.label1)
+
+
+        hBoxLayout.addWidget(self.icon)
+
         self.setLayout(hBoxLayout)
         self.showFullScreen()
 
