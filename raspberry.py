@@ -50,6 +50,7 @@ class Main(QWidget):
         self.icon.resize(pixmap.width(), pixmap.height())
         self.icon.move(88,57.5)
 
+        self.showFullScreen()
 
 def buttonClicked(self):
     pass
