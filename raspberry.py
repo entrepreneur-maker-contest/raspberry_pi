@@ -68,8 +68,7 @@ class Main(QWidget):
         palette = self.palette()
         role = self.backgroundRole()
         color = QColor()
-
-        palette.setColor(role, color.fromRgb(R, G, B))
+        palette.setColor(role, color.fromRgb(B, G, R))
         self.setPalette(palette)
 
 
