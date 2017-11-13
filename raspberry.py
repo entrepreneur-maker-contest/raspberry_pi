@@ -3,7 +3,9 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-percentage = 50
+R=185
+G=57
+B=65
 class PaintWidget(QWidget):
     def __init__(self,parent=None,r=0,g=0,b=255,width=0,height=0):
         super().__init__(parent)
@@ -42,15 +44,10 @@ class Main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setGeometry(0,0,320,240)
-        self.m = PaintWidget(self,r=253,g=197,b=85,width=self.width(),height=self.height())
-        self.m.move(0,0)
-        self.m.resize(self.width(),self.height())
-
-        self.label1 = MyLabel("INGREDIENT",160,18)
+        self.label1 = MyLabel("INGREDIENT",150,30)
         self.label1.setStyleSheet("font-size: 20px;font-weight: 300;text-align: center;color: rgb(255, 255, 255);")
 
-        self.label2 = MyLabel("BEER",153,30)
+        self.label2 = MyLabel("BEER",143,30)
         self.label2.setStyleSheet("font-size: 40px;font-weight: 300;line-height: 0.62;text-align: center;color: rgb(255, 255, 255);")
 
         pixmap = QPixmap('raspberry-icon.png')
@@ -61,11 +58,19 @@ class Main(QWidget):
         self.icon.setPixmap(pixmap)
 
         hBoxLayout = QHBoxLayout()
+
         hBoxLayout.addWidget(self.icon)
         hBoxLayout.addWidget(self.label1)
         hBoxLayout.addWidget(self.label2)
         self.setLayout(hBoxLayout)
         self.showFullScreen()
+
+        palette = self.palette()
+        role = self.backgroundRole()
+        color = QColor()
+
+        palette.setColor(role, color.fromRgb(R, G, B))
+        self.setPalette(palette)
 
 
 
