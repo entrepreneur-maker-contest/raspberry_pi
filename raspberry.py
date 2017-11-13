@@ -65,7 +65,7 @@ class Main(QWidget):
         hBoxLayout.addWidget(self.label1)
         hBoxLayout.addWidget(self.label2)
         self.setLayout(hBoxLayout)
-        # self.showFullScreen()
+        self.showFullScreen()
 
 
 
