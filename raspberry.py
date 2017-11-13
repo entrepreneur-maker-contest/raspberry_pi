@@ -27,10 +27,10 @@ class Main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.label1 = MyLabel("INGREDIENT",170,30)
+        self.label1 = MyLabel("INGREDIENT",70,30)
         self.label1.setStyleSheet("font-size: 20px;font-weight: 300;text-align: center;color: rgb(255, 255, 255);")
 
-        self.label2 = MyLabel("BEER",163,30)
+        self.label2 = MyLabel("BEER",77,30)
         self.label2.setStyleSheet("font-size: 40px;font-weight: 300;line-height: 0.62;text-align: center;color: rgb(255, 255, 255);")
 
         pixmap = QPixmap('raspberry-icon.png')
