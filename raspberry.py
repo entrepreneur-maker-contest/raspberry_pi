@@ -1,6 +1,6 @@
 from PyQt5 import QtGui
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 percentage = 50
@@ -17,40 +17,57 @@ class PaintWidget(QWidget):
         qp = QPainter(self)
 
         qp.setPen(Qt.black)
-        size = self.size()
 
         # Colored rectangles
         qp.setBrush(QColor(self.r, self.g, self.b))
-        qp.drawRect(0, 0, self.width, self.height)
+        qp.drawRect(0, 0,  self.width,self.height)
+
+class MyLabel(QLabel):
+    def __init__(self, text=None,width=0,height=0):
+        super(self.__class__, self).__init__()
+        self.text = text
+        self.width=width
+        self.height=height
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setPen(Qt.white)
+        painter.translate( self.height,self.width)
+        painter.rotate(-90)
+        if self.text:
+            painter.drawText(0, 0, self.text)
+        painter.end()
 
 
 class Main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setGeometry(0,0,480,320)
+        self.setGeometry(0,0,320,240)
         self.m = PaintWidget(self,r=253,g=197,b=85,width=self.width(),height=self.height())
         self.m.move(0,0)
         self.m.resize(self.width(),self.height())
-        self.label1 = QLabel("INGREDIENT", self)
-        self.label1.move(70, 204.5)
-        self.label1.setStyleSheet("font-size: 20px;font-weight: 300;text-align: center;color: rgb(255, 255, 255);")
-        self.label1.resize(180,18)
 
-        self.label2 = QLabel("BEER", self)
-        self.label2.move(77, 248.5)
-        self.label2.resize(180,30)
+        self.label1 = MyLabel("INGREDIENT",160,18)
+        self.label1.setStyleSheet("font-size: 20px;font-weight: 300;text-align: center;color: rgb(255, 255, 255);")
+
+        self.label2 = MyLabel("BEER",153,30)
         self.label2.setStyleSheet("font-size: 40px;font-weight: 300;line-height: 0.62;text-align: center;color: rgb(255, 255, 255);")
 
-        self.icon = QLabel(self)
         pixmap = QPixmap('raspberry-icon.png')
+        transform = QTransform().rotate(-90)
+        pixmap = pixmap.transformed(transform)
+        self.icon = QLabel()
+
         self.icon.setPixmap(pixmap)
 
-        # Optional, resize window to image size
-        self.icon.resize(pixmap.width(), pixmap.height())
-        self.icon.move(88,57.5)
+        hBoxLayout = QHBoxLayout()
+        hBoxLayout.addWidget(self.icon)
+        hBoxLayout.addWidget(self.label1)
+        hBoxLayout.addWidget(self.label2)
+        self.setLayout(hBoxLayout)
+        # self.showFullScreen()
 
-        self.showFullScreen()
+
 
 def buttonClicked(self):
     pass
