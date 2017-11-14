@@ -93,14 +93,17 @@ class First(QWidget):
             global second
             second = Second(water=486,cafein=0,sugar=0,_color = 0)
             self.hide()
-        if key == Qt.Key_4:
+        elif key == Qt.Key_4:
             second = Second(water=327, cafein=0, sugar=0,_color = 0)
             self.hide()
-        if key == Qt.Key_6:
+        elif key == Qt.Key_6:
             second = Second(water=416, cafein=166.4, sugar=0,_color=1)
             self.hide()
-        if key == Qt.Key_8:
+        elif key == Qt.Key_8:
             second = Second(water=546, cafein=43.6, sugar=57646,_color = 2)
+            self.hide()
+        elif key == Qt.Key_0:
+            Black()
             self.hide()
 class Second(QWidget):
     def __init__(self, parent=None,water=0,cafein=0,sugar=0,_color=0):
@@ -169,6 +172,30 @@ class Second(QWidget):
         elif key == Qt.Key_7:
             first = First(drink_type="coke", kalori=205, _color =2)
             self.hide()
+        elif key == Qt.Key_0:
+            Black()
+            self.hide()
+class Black(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        palette = self.palette()
+        role = self.backgroundRole()
+        color = QColor()
+        palette.setColor(role, color.fromRgb(0,0,0))
+        self.setPalette(palette)
+
+        self.showFullScreen()
+
+        self.keyPressEvent = self.newkey
+
+
+    def newkey(self, event):
+        key = event.key()
+        if key == Qt.Key_1:
+            first = First(drink_type="water",kalori=0,_color = 0)
+            self.hide()
+
 
 def buttonClicked(self):
     pass
@@ -178,7 +205,7 @@ if __name__ == '__main__':
     import sys
 
     app = QApplication(sys.argv)
-    first = First(drink_type="water",kalori=0)
+    black = Black()
 
 
     sys.exit(app.exec_())
