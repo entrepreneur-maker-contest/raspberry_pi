@@ -5,7 +5,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from time import sleep
 
-con = ((65, 155, 249),(105, 57, 57))
+con = ((65, 155, 249),(105, 57, 57),(185, 57, 65))
 first = None
 second = None
 
@@ -44,7 +44,7 @@ class MyLabel(QLabel):
 
 
 class First(QWidget):
-    def __init__(self, parent=None,drink_type="none",kalori=0):
+    def __init__(self, parent=None,drink_type="none",kalori=0,_color = 0):
         super().__init__(parent)
 
         self.label1 = MyLabel("INGREDIENT",48,30)
@@ -76,9 +76,9 @@ class First(QWidget):
         palette = self.palette()
         role = self.backgroundRole()
         color = QColor()
-        B=con[0][2]
-        R=con[0][0]
-        G=con[0][1]
+        B=con[_color][2]
+        R=con[_color][0]
+        G=con[_color][1]
         palette.setColor(role, color.fromRgb(B, G, R))
         self.setPalette(palette)
 
@@ -91,19 +91,19 @@ class First(QWidget):
 
         if key == Qt.Key_2:
             global second
-            second = Second(water=486,cafein=0,sugar=0)
+            second = Second(water=486,cafein=0,sugar=0,_color = 0)
             self.hide()
         if key == Qt.Key_4:
-            second = Second(water=327, cafein=0, sugar=0)
+            second = Second(water=327, cafein=0, sugar=0,_color = 0)
             self.hide()
         if key == Qt.Key_6:
-            second = Second(water=416, cafein=166.4, sugar=0)
+            second = Second(water=416, cafein=166.4, sugar=0,_color=1)
             self.hide()
         if key == Qt.Key_8:
-            second = Second(water=546, cafein=43.6, sugar=57646)
+            second = Second(water=546, cafein=43.6, sugar=57646,_color = 2)
             self.hide()
 class Second(QWidget):
-    def __init__(self, parent=None,water=0,cafein=0,sugar=0):
+    def __init__(self, parent=None,water=0,cafein=0,sugar=0,_color=0):
         super().__init__(parent)
 
         self.label1 = MyLabel("water",48,30)
@@ -143,9 +143,9 @@ class Second(QWidget):
         palette = self.palette()
         role = self.backgroundRole()
         color = QColor()
-        B = con[1][2]
-        R = con[1][0]
-        G = con[1][1]
+        B = con[_color][2]
+        R = con[_color][0]
+        G = con[_color][1]
         palette.setColor(role, color.fromRgb(B, G, R))
         self.setPalette(palette)
 
@@ -158,16 +158,16 @@ class Second(QWidget):
     def newkey(self, event):
         key = event.key()
         if key == Qt.Key_1:
-            first = First(drink_type="water",kalori=0)
+            first = First(drink_type="water",kalori=0,_color = 0)
             self.hide()
         elif key == Qt.Key_3:
-            first = First(drink_type="water",kalori=0)
+            first = First(drink_type="water",kalori=0,_color = 0)
             self.hide()
         elif key == Qt.Key_5:
-            first = First(drink_type="coffee",kalori=2)
+            first = First(drink_type="coffee",kalori=2,_color = 1)
             self.hide()
         elif key == Qt.Key_7:
-            first = First(drink_type="coke", kalori=205)
+            first = First(drink_type="coke", kalori=205, _color =2)
             self.hide()
 
 def buttonClicked(self):
