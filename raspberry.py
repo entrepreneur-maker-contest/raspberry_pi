@@ -54,7 +54,7 @@ class First(QWidget):
         self.label2.setStyleSheet("font-size: 40px;font-weight: 300;line-height: 0.62;text-align: center;color: rgb(255, 255, 255);")
 
         self.label3 = MyLabel(str(kalori)+"kcal",50,20)
-        self.label3.setStyleSheet("font-size: 10px;font-weight: 500;text-align: center;color: rgb(255, 255, 255);")
+        self.label3.setStyleSheet("font-size: 15px;font-weight: 500;text-align: center;color: rgb(255, 255, 255);")
 
         pixmap = QPixmap('raspberry-icon.png')
         transform = QTransform().rotate(90)
@@ -195,7 +195,27 @@ class Black(QWidget):
         if key == Qt.Key_1:
             first = First(drink_type="water",kalori=0,_color = 0)
             self.hide()
-
+        elif key == Qt.Key_3:
+            first = First(drink_type="water", kalori=0, _color=0)
+            self.hide()
+        elif key == Qt.Key_5:
+            first = First(drink_type="coffee", kalori=2, _color=1)
+            self.hide()
+        elif key == Qt.Key_7:
+            first = First(drink_type="coke", kalori=205, _color=2)
+            self.hide()
+        elif key == Qt.Key_4:
+            second = Second(water=327, cafein=0, sugar=0, _color=0)
+            self.hide()
+        elif key == Qt.Key_6:
+            second = Second(water=416, cafein=166.4, sugar=0, _color=1)
+            self.hide()
+        elif key == Qt.Key_8:
+            second = Second(water=546, cafein=43.6, sugar=57646, _color=2)
+            self.hide()
+        elif key == Qt.Key_2:
+            second = Second(water=486, cafein=0, sugar=0, _color=0)
+            self.hide()
 
 def buttonClicked(self):
     pass
